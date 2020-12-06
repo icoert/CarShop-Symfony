@@ -1,3 +1,3 @@
 # rentc-symfony
 
-First Php app using symfony is about a renting tool for cars.
+My first PhP app using Symfony is about a renting tool for cars.
