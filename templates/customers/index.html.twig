@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RentC Customers{% endblock %}
+
+{% block body %}
+        {% if customers %}
+            <table id="customers" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Birth Date</th>
+                    <th>Location</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for customer in customers %}
+                    <tr>
+                        <td>{{ customer.name }}</td>
+                        <td>{{ customer.birthDate }}</td>
+                        <td>{{ customer.location }}</td>
+                        <td>
+                            <a href="/article/{{ customer.customerId }}" class="btn btn-dark">Show</a>
+                            <a href="/article/edit/{{ customer.customerId }}" class="btn btn-light">Edit</a>
+                            <a href="#" class="btn btn-danger delete-article" data-id="{{ customerId }}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No customers to display.</p>
+        {% endif %}
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RentC Reservations{% endblock %}
+
+{% block body %}
+        {% if reservations %}
+            <table id="reservations" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Reservation Status</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Location</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for reservation in reservations %}
+                    <tr>
+                        <td>{{ reservation.customer }}</td>
+                        <td>{{ reservation.reservationStatus }}</td>
+                        <td>{{ reservation.startDate }}</td>
+                        <td>{{ reservation.endDate }}</td>
+                        <td>{{ reservation.location }}</td>
+                        <td>
+                            <a href="/article/{{ reservation.id }}" class="btn btn-dark">Show</a>
+                            <a href="/article/edit/{{ reservation.id }}" class="btn btn-light">Edit</a>
+                            <a href="#" class="btn btn-danger delete-article" data-id="{{ reservation.id }}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No reservations to display.</p>
+        {% endif %}
+{% endblock %}

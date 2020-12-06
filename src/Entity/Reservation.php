@@ -13,6 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
 class Reservation
 {
     /**
+     * @var int|null
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id()
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
      * @var Car|null
      *
      * @ORM\OneToOne(targetEntity="Car")
@@ -53,6 +61,14 @@ class Reservation
      * @ORM\Column(name="location", type="string")
      */
     private $location;
+
+    /**
+     * @return int|null
+     */
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
     /**
      * @return Car|null

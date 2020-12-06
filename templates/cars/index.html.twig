@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RentC Cars{% endblock %}
+
+{% block body %}
+        {% if cars %}
+            <table id="cars" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Plate</th>
+                    <th>Manufacturer</th>
+                    <th>Model</th>
+                    <th>Price/Day</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for car in cars %}
+                    <tr>
+                        <td>{{ car.plate }}</td>
+                        <td>{{ car.manufacturer }}</td>
+                        <td>{{ car.model }}</td>
+                        <td>{{ car.pricePerDay }}</td>
+                        <td>
+                            <a href="/article/{{ car.carId }}" class="btn btn-dark">Show</a>
+                            <a href="/article/edit/{{ car.carId }}" class="btn btn-light">Edit</a>
+                            <a href="#" class="btn btn-danger delete-article" data-id="{{ car.carId }}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No cars to display.</p>
+        {% endif %}
+{% endblock %}
