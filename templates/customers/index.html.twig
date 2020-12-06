@@ -17,12 +17,12 @@
                 {% for customer in customers %}
                     <tr>
                         <td>{{ customer.name }}</td>
-                        <td>{{ customer.birthDate }}</td>
+                        <td>{{ customer.birthDate|date('Y-m-d') }}</td>
                         <td>{{ customer.location }}</td>
                         <td>
-                            <a href="/article/{{ customer.customerId }}" class="btn btn-dark">Show</a>
-                            <a href="/article/edit/{{ customer.customerId }}" class="btn btn-light">Edit</a>
-                            <a href="#" class="btn btn-danger delete-article" data-id="{{ customerId }}">Delete</a>
+                            <a href="/article/{{ customer.id }}" class="btn btn-dark">Show</a>
+                            <a href="/article/edit/{{ customer.id }}" class="btn btn-info">Edit</a>
+                            <a href="#" class="btn btn-danger delete-article" data-id="{{ customer.id }}">Delete</a>
                         </td>
                     </tr>
                 {% endfor %}

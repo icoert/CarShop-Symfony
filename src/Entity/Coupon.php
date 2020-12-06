@@ -12,16 +12,24 @@ use Doctrine\ORM\Mapping as ORM;
 class Coupon
 {
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="couponCode", type="integer")
+     * @var int|null
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id()
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $couponCode;
+    private $id;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="discount",type="string")
+     * @ORM\Column(name="couponCode", type="string")
+     */
+    private $couponCode;
+
+    /**
+     * @var float|null
+     *
+     * @ORM\Column(name="discount",type="float")
      */
     private $discount;
 
@@ -31,6 +39,15 @@ class Coupon
      * @ORM\Column(name="description",type="string")
      */
     private $description;
+
+    /**
+     * @return int|null
+     */
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
 
     /**
      * @return string|null
@@ -49,17 +66,17 @@ class Coupon
     }
 
     /**
-     * @return string|null
+     * @return float|null
      */
-    public function getDiscount(): ?string
+    public function getDiscount(): ?float
     {
         return $this->discount;
     }
 
     /**
-     * @param string|null $discount
+     * @param float|null $discount
      */
-    public function setDiscount(?string $discount): void
+    public function setDiscount(?float $discount): void
     {
         $this->discount = $discount;
     }
@@ -79,5 +96,6 @@ class Coupon
     {
         $this->description = $description;
     }
+
 
 }

@@ -3,6 +3,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -13,11 +14,11 @@ class Customer
 {
     /**
      * @var int|null
-     * @ORM\Column(name="customerId", type="integer")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $customerId;
+    private $id;
 
     /**
      * @var string|null
@@ -26,18 +27,25 @@ class Customer
     private $name;
 
     /**
-     * @var DateTime
+     * @var DateTime|null
      * @ORM\Column(name="birthDate", type="datetime")
      */
     private $birthDate;
 
     /**
+     * @var
+     * @ORM\Column(name="location", type="string", length=20)
+     */
+    private $location;
+
+    /**
      * @return int|null
      */
-    public function getCustomerId(): ?int
+    public function getId(): ?int
     {
-        return $this->customerId;
+        return $this->id;
     }
+
 
     /**
      * @return string|null
@@ -56,17 +64,17 @@ class Customer
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime|null
      */
-    public function getBirthDate(): \DateTime
+    public function getBirthDate(): DateTime
     {
         return $this->birthDate;
     }
 
     /**
-     * @param \DateTime $birthDate
+     * @param DateTime|null $birthDate
      */
-    public function setBirthDate(\DateTime $birthDate): void
+    public function setBirthDate(DateTime $birthDate): void
     {
         $this->birthDate = $birthDate;
     }
@@ -87,10 +95,6 @@ class Customer
         $this->location = $location;
     }
 
-    /**
-     * @var
-     * @ORM\Column(name="location", type="string", length=20)
-     */
-    private $location;
+
 
 }

@@ -31,6 +31,7 @@ class Reservation
      * @var Customer|null
      *
      * @ORM\OneToOne(targetEntity="Customer")
+     *
      */
     private $customer;
 
@@ -42,16 +43,23 @@ class Reservation
     private $reservationStatus;
 
     /**
-     * @var DateTime
+     * @var Collection|Coupon[]
      *
-     * @ORM\Coulmn(name="startDate", type="datetime")
+     * @ORM\ManyToMany(targetEntity="Coupon")
+     */
+    private $coupon;
+
+    /**
+     * @var DateTime|null
+     *
+     * @ORM\Column(name="startDate",type="datetime")
      */
     private $startDate;
 
     /**
-     * @var DateTime
+     * @var DateTime|null
      *
-     * @ORM\Coulmn(name="endDate", type="datetime")
+     * @ORM\Column(name="endDate",type="datetime")
      */
     private $endDate;
 
@@ -69,6 +77,7 @@ class Reservation
     {
         return $this->id;
     }
+
 
     /**
      * @return Car|null
@@ -119,6 +128,22 @@ class Reservation
     }
 
     /**
+     * @return Collection|Coupon[]
+     */
+    public function getCoupon()
+    {
+        return $this->coupon;
+    }
+
+    /**
+     * @param Collection|Coupon[] $coupon
+     */
+    public function setCoupon($coupon): void
+    {
+        $this->coupon = $coupon;
+    }
+
+    /**
      * @return DateTime
      */
     public function getStartDate(): DateTime
@@ -127,7 +152,7 @@ class Reservation
     }
 
     /**
-     * @param DateTime $startDate
+     * @param DateTime|null $startDate
      */
     public function setStartDate(DateTime $startDate): void
     {
@@ -135,7 +160,7 @@ class Reservation
     }
 
     /**
-     * @return DateTime
+     * @return DateTime|null
      */
     public function getEndDate(): DateTime
     {
@@ -143,7 +168,7 @@ class Reservation
     }
 
     /**
-     * @param DateTime $endDate
+     * @param DateTime|null $endDate
      */
     public function setEndDate(DateTime $endDate): void
     {
@@ -165,6 +190,8 @@ class Reservation
     {
         $this->location = $location;
     }
+
+
 
     public function __construct()
     {

@@ -13,11 +13,11 @@ class Car
 {
     /**
      * @var int|null
-     * @ORM\Column(name="carId", type="integer")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $carId;
+    private $id;
 
     /**
      * @var string|null
@@ -43,17 +43,18 @@ class Car
     /**
      * @var float|null
      *
-     * @ORM\Column(name="pricerPerDay",type="float")
+     * @ORM\Column(name="pricePerDay",type="float")
      */
-    private $pricerPerDay;
+    private $pricePerDay;
 
     /**
      * @return int|null
      */
-    public function getCarId(): ?int
+    public function getId(): ?int
     {
-        return $this->carId;
+        return $this->id;
     }
+
 
     /**
      * @return string|null
@@ -106,20 +107,18 @@ class Car
     /**
      * @return float|null
      */
-    public function getPricerPerDay(): ?float
+    public function getPricePerDay(): ?float
     {
-        return $this->pricerPerDay;
+        return $this->pricePerDay;
     }
 
     /**
-     * @param float|null $pricerPerDay
+     * @param float|null $pricePerDay
      */
-    public function setPricerPerDay(?float $pricerPerDay): void
+    public function setPricePerDay(?float $pricePerDay): void
     {
-        $this->pricerPerDay = $pricerPerDay;
+        $this->pricePerDay = $pricePerDay;
     }
-
-
 
 
 }
