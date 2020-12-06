@@ -26,7 +26,7 @@ class Customer
     private $name;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      * @ORM\Column(name="birthDate", type="datetime")
      */
     private $birthDate;

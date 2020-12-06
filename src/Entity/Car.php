@@ -41,6 +41,13 @@ class Car
     private $model;
 
     /**
+     * @var float|null
+     *
+     * @ORM\Column(name="pricerPerDay",type="float")
+     */
+    private $pricerPerDay;
+
+    /**
      * @return int|null
      */
     public function getCarId(): ?int
@@ -112,12 +119,7 @@ class Car
         $this->pricerPerDay = $pricerPerDay;
     }
 
-    /**
-     * @var float|null
-     *
-     * @ORM\Column(name="pricerperday",type="float")
-     */
-    private $pricerPerDay;
+
 
 
 }

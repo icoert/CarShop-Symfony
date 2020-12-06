@@ -13,11 +13,11 @@ class ReservationStatus
 {
     /**
      * @var int|null
-     * @ORM\Column(name="reservationStatsId", type="integer")
+     * @ORM\Column(name="reservationStatusId", type="integer")
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $reservationStatsId;
+    private $reservationStatusId;
 
     /**
      * @var string|null
@@ -29,9 +29,9 @@ class ReservationStatus
     /**
      * @return int|null
      */
-    public function getReservationStatsId(): ?int
+    public function getReservationStatusId(): ?int
     {
-        return $this->reservationStatsId;
+        return $this->reservationStatusId;
     }
 
     /**

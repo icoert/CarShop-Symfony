@@ -12,12 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Coupon
 {
     /**
-     * @var int|null
-     * @ORM\Column(name="couponId", type="integer")
-     * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @var string|null
+     *
+     * @ORM\Column(name="couponCode", type="integer")
      */
-    private $couponId;
+    private $couponCode;
 
     /**
      * @var string|null
@@ -34,11 +33,19 @@ class Coupon
     private $description;
 
     /**
-     * @return int|null
+     * @return string|null
      */
-    public function getReservationStatsId(): ?int
+    public function getCouponCode(): ?string
     {
-        return $this->reservationStatsId;
+        return $this->couponCode;
+    }
+
+    /**
+     * @param string|null $couponCode
+     */
+    public function setCouponCode(?string $couponCode): void
+    {
+        $this->couponCode = $couponCode;
     }
 
     /**
@@ -72,4 +79,5 @@ class Coupon
     {
         $this->description = $description;
     }
+
 }
