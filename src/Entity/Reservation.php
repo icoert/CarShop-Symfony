@@ -36,16 +36,16 @@ class Reservation
     private $customer;
 
     /**
-     * @var Collection|ReservationStatus[]
+     * @var $reservationStatus
      *
-     * @ORM\ManyToMany(targetEntity="ReservationStatus")
+     * @ORM\OneToMany(targetEntity="ReservationStatus", mappedBy="status")
      */
     private $reservationStatus;
 
     /**
-     * @var Collection|Coupon[]
+     * @var $coupon
      *
-     * @ORM\ManyToMany(targetEntity="Coupon")
+     * @ORM\OneToMany(targetEntity="Coupon", mappedBy="couponCode")
      */
     private $coupon;
 
@@ -112,15 +112,15 @@ class Reservation
     }
 
     /**
-     * @return Collection|ReservationStatus[]
+     * @return ReservationStatus|null
      */
-    public function getReservationStatus()
+    public function getReservationStatus(): ?ReservationStatus
     {
         return $this->reservationStatus;
     }
 
     /**
-     * @param Collection|ReservationStatus[] $reservationStatus
+     * @param ReservationStatus|null $reservationStatus
      */
     public function setReservationStatus($reservationStatus): void
     {
@@ -128,15 +128,15 @@ class Reservation
     }
 
     /**
-     * @return Collection|Coupon[]
+     * @return Coupon|null
      */
-    public function getCoupon()
+    public function getCoupon(): ?Coupon
     {
         return $this->coupon;
     }
 
     /**
-     * @param Collection|Coupon[] $coupon
+     * @param Coupon|null $coupon
      */
     public function setCoupon($coupon): void
     {
