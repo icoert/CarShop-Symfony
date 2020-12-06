@@ -20,9 +20,9 @@
                         <td>{{ customer.birthDate|date('Y-m-d') }}</td>
                         <td>{{ customer.location }}</td>
                         <td>
-                            <a href="/article/{{ customer.id }}" class="btn btn-dark">Show</a>
-                            <a href="/article/edit/{{ customer.id }}" class="btn btn-info">Edit</a>
-                            <a href="#" class="btn btn-danger delete-article" data-id="{{ customer.id }}">Delete</a>
+                            <a href="/customers/{{ customer.id }}" class="btn btn-dark">Show</a>
+                            <a href="/customers/edit/{{ customer.id }}" class="btn btn-info">Edit</a>
+                            <a href="#" class="btn btn-danger delete-customer" data-id="{{ customer.id }}">Delete</a>
                         </td>
                     </tr>
                 {% endfor %}

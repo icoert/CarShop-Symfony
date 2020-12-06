@@ -24,9 +24,9 @@
                         <td>{{ reservation.endDate|date('Y-m-d') }}</td>
                         <td>{{ reservation.location }}</td>
                         <td>
-                            <a href="/article/{{ reservation.id }}" class="btn btn-dark">Show</a>
-                            <a href="/article/edit/{{ reservation.id }}" class="btn btn-info">Edit</a>
-                            <a href="#" class="btn btn-danger delete-article" data-id="{{ reservation.id }}">Delete</a>
+                            <a href="/reservations/{{ reservation.id }}" class="btn btn-dark">Show</a>
+                            <a href="/reservations/edit/{{ reservation.id }}" class="btn btn-info">Edit</a>
+                            <a href="#" class="btn btn-danger delete-reservation" data-id="{{ reservation.id }}">Delete</a>
                         </td>
                     </tr>
                 {% endfor %}

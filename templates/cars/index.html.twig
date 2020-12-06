@@ -22,9 +22,9 @@
                         <td>{{ car.model }}</td>
                         <td>{{ car.pricePerDay }}</td>
                         <td>
-                            <a href="/article/{{ car.id }}" class="btn btn-dark">Show</a>
-                            <a href="/article/edit/{{ car.id }}" class="btn btn-info">Edit</a>
-                            <a href="#" class="btn btn-danger delete-article" data-id="{{ car.id }}">Delete</a>
+                            <a href="/cars/{{ car.id }}" class="btn btn-dark">Show</a>
+                            <a href="/cars/edit/{{ car.id }}" class="btn btn-info">Edit</a>
+                            <a href="#" class="btn btn-danger delete-car" data-id="{{ car.id }}">Delete</a>
                         </td>
                     </tr>
                 {% endfor %}
