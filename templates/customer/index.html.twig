@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RentC Customers{% endblock %}
+
+{% block body %}
+    <h1>Customers</h1>
+    <div style="text-align: right;">
+        <a href="{{ path('customer_new') }}" class="btn btn-primary" style="margin-bottom: 10px; ">Add a new customer</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>BirthDate</th>
+                <th>Location</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for customer in customers %}
+            <tr>
+                <td>{{ customer.id }}</td>
+                <td>{{ customer.name }}</td>
+                <td>{{ customer.birthDate ? customer.birthDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ customer.location }}</td>
+                <td style="text-align:right; width:145px;">
+                    <a href="{{ path('customer_show', {'id': customer.id}) }}" class="btn btn-info">Show</a>
+                    <a href="{{ path('customer_edit', {'id': customer.id}) }}" class="btn btn-dark">Edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">No records found.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

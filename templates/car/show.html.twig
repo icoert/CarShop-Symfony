@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Car{% endblock %}
+
+{% block body %}
+    <h1>Car</h1>
+    <div style="text-align: right; margin-bottom: 10px;">
+        <a href="{{ path('car_index') }}" class="btn btn-info">Back</a>
+        <a href="{{ path('car_edit', {'id': car.id}) }}" class="btn btn-dark">Edit</a>
+    </div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ car.id }}</td>
+            </tr>
+            <tr>
+                <th>Plate</th>
+                <td>{{ car.plate }}</td>
+            </tr>
+            <tr>
+                <th>Manufacturer</th>
+                <td>{{ car.manufacturer }}</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>{{ car.model }}</td>
+            </tr>
+            <tr>
+                <th>PricePerDay</th>
+                <td>{{ car.pricePerDay }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {{ include('car/_delete_form.html.twig') }}
+{% endblock %}

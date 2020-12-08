@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RentC Cars{% endblock %}
+
+{% block body %}
+    <h1>Cars</h1>
+    <div style="text-align: right; margin-bottom: 10px;">
+    <a href="{{ path('car_new') }}" class="btn btn-primary" >Add a new car</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Plate</th>
+                <th>Manufacturer</th>
+                <th>Model</th>
+                <th>PricePerDay</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for car in cars %}
+            <tr>
+                <td>{{ car.id }}</td>
+                <td>{{ car.plate }}</td>
+                <td>{{ car.manufacturer }}</td>
+                <td>{{ car.model }}</td>
+                <td>{{ car.pricePerDay }}</td>
+                <td style="text-align:right; width:145px;">
+                    <a href="{{ path('car_show', {'id': car.id}) }}" class="btn btn-info">Show</a>
+                    <a href="{{ path('car_edit', {'id': car.id}) }}" class="btn btn-dark">Edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">No records found.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
