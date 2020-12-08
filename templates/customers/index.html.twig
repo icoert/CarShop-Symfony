@@ -19,9 +19,8 @@
                         <td>{{ customer.name }}</td>
                         <td>{{ customer.birthDate|date('Y-m-d') }}</td>
                         <td>{{ customer.location }}</td>
-                        <td>
-                            <a href="/customers/{{ customer.id }}" class="btn btn-dark">Show</a>
-                            <a href="/customers/edit/{{ customer.id }}" class="btn btn-info">Edit</a>
+                        <td style="text-align:right; width:145px;">
+                            <a href="/customers/edit/{{ customer.id }}" class="btn btn-dark">Edit</a>
                             <a href="#" class="btn btn-danger delete-customer" data-id="{{ customer.id }}">Delete</a>
                         </td>
                     </tr>
@@ -29,6 +28,9 @@
                 </tbody>
             </table>
         {% else %}
-            <p>No customers to display.</p>
+            <div class="jumbotron">
+                <h4>No customers to display.</h4>
+                <a href="/customers/add" class="btn btn-primary">Add a customer</a>
+            </div>
         {% endif %}
 {% endblock %}
