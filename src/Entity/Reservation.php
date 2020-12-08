@@ -5,6 +5,7 @@ namespace App\Entity;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Table(name="reservation")
@@ -146,7 +147,7 @@ class Reservation
     /**
      * @return DateTime
      */
-    public function getStartDate(): DateTime
+    public function getStartDate(): ?DateTime
     {
         return $this->startDate;
     }
@@ -162,7 +163,7 @@ class Reservation
     /**
      * @return DateTime|null
      */
-    public function getEndDate(): DateTime
+    public function getEndDate(): ?DateTime
     {
         return $this->endDate;
     }

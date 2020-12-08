@@ -66,7 +66,7 @@ class Customer
     /**
      * @return DateTime|null
      */
-    public function getBirthDate(): DateTime
+    public function getBirthDate(): ?DateTime
     {
         return $this->birthDate;
     }
