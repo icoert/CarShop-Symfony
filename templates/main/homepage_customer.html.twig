@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+            <ul class="list-group" style="width:100%; height:70%; text-align: center;">
+              <li class="list-group-item"><a href="{{ path('order_add', { id: customer.id }) }}">Adauga o comanda</a></li>
+              <li class="list-group-item"><a href="{{ path('customer_read_orders', { id: customer.id }) }}">Administreaza comenzi</a></li>
+              <li class="list-group-item"><a href="{{ path('customer_update', { id: customer.id }) }}">Modifica date personale</a></li>
+              <li class="list-group-item"><a href="{{ path('employee_read') }}">Evalueaza angajat</a></li>
+            </ul>
+
+{% endblock %}

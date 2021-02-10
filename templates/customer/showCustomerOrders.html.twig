@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista de persoane{% endblock %}
+
+{% block body %}
+
+<div class="wrapper">
+    <h1>Lista de comenzi:</h1>
+    <p>Nume: {{ customer.user.firstname }} {{  customer.user.lastname }}</p>
+
+    {% for order in customer.orders %}
+        {% if not order.status is same as 'Comanda in curs de livrare' %}
+            <div class="name-card">
+                <p> 
+                    <b>Comanda:</b> {{ order.id }}  (<i>{{ order.status }})</i> <br /> 
+                    <b>Valoare:</b> {{ order.amount }} ron <br /> 
+                    <b>Estimare Livrare:</b> {{ order.getDeliveryDate()|date("m/d/Y") }} <br /> 
+                    <b>Produse:</b> <br />
+                        {% for details in order.getDetails %}
+                            - {{ details.product.getName }} {{ details.quantity }} {{ details.product.getMeasureUnit }} <br />  
+                        {% endfor %}
+                </p>
+                    <div align="center">
+                        <a class="btn btn-info" href="{{ path('order_update', { id: customer.id, id_order: order.id }) }}">Modifica comanda</a> 
+                        <a class="btn btn-danger" href="{{ path('order_remove', { id: customer.id, id_order: order.id}) }}">Sterge comanda</a>
+                    </div>
+            </div>
+        {% else %}
+            <div class="name-card">
+                <p> 
+                    <b>Comanda:</b> {{ order.id }}  (<i>{{ order.status }})</i> <br /> 
+                    <b>Valoare:</b> {{ order.amount }} ron <br /> 
+                    <b>Estimare Livrare:</b> {{ order.getDeliveryDate()|date("m/d/Y") }} <br /> 
+                    <b>Produse:</b> <br />
+                        {% for details in order.getDetails %}
+                            - {{ details.product.getName }} {{ details.quantity }} {{ details.product.getMeasureUnit }} <br />  
+                        {% endfor %}
+                </p>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+<div class="mb-3"> 
+    <a class="btn btn-success" href="{{ path('order_add', { id: customer.id }) }}">Adauga comanda</a>
+</div>
+<div> 
+</div>
+{% endblock %}

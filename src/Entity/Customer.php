@@ -1,100 +1,125 @@
 <?php
 
-
 namespace App\Entity;
 
-use DateTime;
+use App\Repository\CustomerRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="customer")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass=CustomerRepository::class)
  */
 class Customer
 {
     /**
-     * @var int|null
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string|null
-     * @ORM\Column(name="name", type="string")
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="customer", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $name;
+    private $user;
 
     /**
-     * @var DateTime|null
-     * @ORM\Column(name="birthDate", type="datetime")
+     * @ORM\OneToOne(targetEntity=DeliveryAddress::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $birthDate;
+    private $delivery_address;
 
     /**
-     * @var
-     * @ORM\Column(name="location", type="string", length=20)
+     * @ORM\Column(type="string", length=15)
+     * @Assert\NotBlank
      */
-    private $location;
+    private $phone;
 
     /**
-     * @return int|null
+     * @ORM\OneToMany(targetEntity=Order::class, mappedBy="customer", orphanRemoval=true)
      */
+    private $orders;
+
+    public function __construct()
+    {
+        $this->orders = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-
-    /**
-     * @return string|null
-     */
-    public function getName(): ?string
+    public function getUser(): ?User
     {
-        return $this->name;
+        return $this->user;
+    }
+
+    public function setUser(User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getDeliveryAddress(): ?DeliveryAddress
+    {
+        return $this->delivery_address;
+    }
+
+    public function setDeliveryAddress(DeliveryAddress $delivery_address): self
+    {
+        $this->delivery_address = $delivery_address;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone): self
+    {
+        $this->phone = $phone;
+
+        return $this;
     }
 
     /**
-     * @param string|null $name
+     * @return Collection|Order[]
      */
-    public function setName(?string $name): void
+    public function getOrders(): Collection
     {
-        $this->name = $name;
+        return $this->orders;
     }
 
-    /**
-     * @return DateTime|null
-     */
-    public function getBirthDate(): ?DateTime
+    public function addOrder(Order $order): self
     {
-        return $this->birthDate;
+        if (!$this->orders->contains($order)) {
+            $this->orders[] = $order;
+            $order->setCustomer($this);
+        }
+
+        return $this;
     }
 
-    /**
-     * @param DateTime|null $birthDate
-     */
-    public function setBirthDate(DateTime $birthDate): void
+    public function removeOrder(Order $order): self
     {
-        $this->birthDate = $birthDate;
+        if ($this->orders->removeElement($order)) {
+            // set the owning side to null (unless already changed)
+            if ($order->getCustomer() === $this) {
+                $order->setCustomer(null);
+            }
+        }
+
+        return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getLocation()
-    {
-        return $this->location;
+    public function __toString() {
+        return $this->user->getFirstName().' '.$this->user->getLastName();
     }
-
-    /**
-     * @param mixed $location
-     */
-    public function setLocation($location): void
-    {
-        $this->location = $location;
-    }
-
-
-
 }

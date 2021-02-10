@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="wrapper">
+    <h1>Lista de produse:</h1>
+    {% for employee in employees %}
+    <div class="name-card">
+    <p>Nume angajat: {{ employee.user.firstname }} {{  employee.user.lastname }}</p>
+    <p>Produse: 
+        {% for product in employee.products %}
+            {{ product.name }} (Pret: {{ product.price }})
+        {% endfor %}
+    </p>
+    </div>
+    <br/>
+    <div class="w3-container w3-pale-green w3-cell"> 
+        <p><a href="{{ path('product_add', { id: employee.id }) }}">Adauga produse</a></p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

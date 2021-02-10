@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="wrapper">
+    <h1>Producator: {{ employee.user.FirstName }} {{ employee.user.LastName }}</h1>
+    <h2>Lista de produse:</h2>
+        {% for product in employee.products %}
+        <div class="name-card">
+            <p>
+                <b>Produs:</b> {{ product.name }}<br/>
+                <b>Categorie:</b> {{ product.category.getName() }}<br/>
+                <b>Pret:</b> {{ product.price }}<br/>
+                <b>Data la care a fost produs:</b> {{ product.getProducedDate|date("m/d/Y") }}<br/>
+                <b>Stoc:</b> {{ product.getQuantity() }} {{ product.getMeasureUnit() }}<br/>
+                <div> 
+                    <a class="btn btn-info" href="{{ path('product_update', { id: employee.id, name:product.name }) }}">Modifica</a>
+                    <a class="btn btn-danger" href="{{ path('product_remove', { id: employee.id, name:product.name }) }}">Sterge</a>
+                </div>
+            </p>
+        </div>
+        {% endfor %}
+        
+    <div class="mb-3"> 
+        <a class="btn btn-success" href="{{ path('product_add', { id: employee.id }) }}">Adauga produse</a>
+    </div>
+</div>
+{% endblock %}

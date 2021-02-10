@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="wrapper">
+    <h1>Lista de produse: </h1>
+    {% for product in products %}
+    <div class="name-card">
+    <p>Produs: {{ product.name }}</p>
+    <p>Categorie: {{ product.category.getName() }}</p>
+    <p>Pret: {{ product.price }}</p>
+    <p>Data la care a fost produs: {{ product.getProducedDate|date("m/d/Y") }}</p>
+    <p>Stoc: {{ product.stock }}</p>
+    <p>Producator: {{ product.employee.user.FirstName }} {{ product.employee.user.LastName }}</p>
+    </div>
+    <br/>
+    {% endfor %}
+</div>
+{% endblock %}

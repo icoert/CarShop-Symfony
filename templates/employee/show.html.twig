@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+<div class="wrapper">
+    <h1>Lista de angajati: {{ special }}</h1>
+    {% for employee in employees %}
+        <div class="name-card">
+            <p><b>Nume:</b> {{ employee.user.firstname }} {{  employee.user.lastname }}</p>
+            <p><b>Angajat din anul:</b> {{ employee.getStartedDate()|date("m/d/Y") }}  -       <b>Nota</b> {{ employee.rate }} </p>
+            <p><b>Descriere:</b> {{ employee.description }}</p>
+            <p><b>Produse:</b><br/> 
+                {% for product in employee.products %}
+                    <p>- {{ product.name }} (Pret: {{ product.price }} lei)<br/></p>
+                {% endfor %}
+            </p>
+            <a class="btn btn-info" href="{{ path('employee_rate', { id: employee.id }) }}">Ofera nota angajat</a>
+        </div>
+    <br/> 
+    {% endfor %}
+</div>
+{% endblock %}

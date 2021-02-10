@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<div class="wrapper">
+    <h1>Lista de comenzi: {{ special }}</h1>
+    {% for order in orders %}
+    <div class="name-card">
+    <p>ID Comanda: {{ order.id }}</p>
+    <p>Nume Client: {{ order.customer.user.firstname }} {{  order.customer.user.lastname }}</p>
+    <p>Valoare: {{ order.amount }}</p>
+    <p>Data la care a fost plasata: {{ order.getCreatedDate|date("m/d/Y")}}</p>
+    <p>Status: {{  order.status }}</p>
+    <p>Estimare livrare: {{order.getDeliveryDate()|date("m/d/Y")}}</p>
+
+    </div>
+    <br/>
+    {% endfor %}
+</div>
+{% endblock %}

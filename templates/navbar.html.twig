@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
     <div class="container">
-        <a href="/" class="navbar-brand">RentC</a>
+        <a href="/" class="navbar-brand">Car Shop</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
             <span class="navbar-toggle-icon"></span>
         </button>
@@ -10,18 +10,15 @@
                 <li class="nav-item">
                     <a href="/" class="nav-link">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a href="/customer" class="nav-link">Customers</a>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <li>
+                    <a href="{{ path('logout') }}" class="nav-link">Logout</a>
                 </li>
-                <li class="nav-item">
-                    <a href="/reservation" class="nav-link">Reservations</a>
+                {% else %}
+                <li>
+                    <a href="{{ path('login') }}" class="nav-link">Login</a>
                 </li>
-                <li class="nav-item">
-                    <a href="/car" class="nav-link">Cars</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/admin" class="nav-link">Admin</a>
-                </li>
+                {% endif %}
             </ul>
         </div>
     </div>

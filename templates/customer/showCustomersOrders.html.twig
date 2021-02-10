@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista de persoane{% endblock %}
+
+{% block body %}
+<div class="wrapper">
+    <h1>Lista de clienti: {{ special }}</h1>
+    {% for customer in customers %}
+    <div class="name-card">
+    <p>Nume: {{ customer.user.firstname }} {{  customer.user.lastname }}</p>
+    <p>Comenzi:
+        {% for order in customer.orders %}
+            <p>Id: {{ order.id }}, Valoare: {{ order.amount }} ron, Estimare Livrare {{ order.getDeliveryDate()|date("m/d/Y") }} )</p>
+            <div class="w3-container w3-teal w3-cell">
+                <p><a href="{{ path('order_update', { id: customer.id, id_order: order.id }) }}">Modifica comanda</a></p> 
+                <p><a href="{{ path('order_remove', { id: customer.id, id_order: order.id}) }}">Sterge comanda</a></p>
+            </div>
+        {% endfor %}
+    </p>
+    <div class="w3-container w3-pale-green w3-cell"> 
+        <p><a href="{{ path('order_add', { id: customer.id }) }}">Adauga comanda</a></p>
+    </div>
+    <div class="w3-container w3-pale-green w3-cell"> 
+        <p><a href="{{ path('order_read', { id: customer.id }) }}">Afiseaza comenzi</a></p>
+    </div>
+    </div>
+    <br/>
+    {% endfor %}
+</div>
+{% endblock %}
